@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb://mustafa:a12345@ds143666.mlab.com:43666/musicschool",
-  "jwtSecret": "sl_myJwtSecret"
-}
