@@ -1,0 +1,17 @@
+{
+  "name": "musicschool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "create-react-app": "^2.1.8",
+    "express": "^4.16.4",
+    "g": "^2.0.1",
+    "mongoose": "^5.5.2"
+  }
+}
