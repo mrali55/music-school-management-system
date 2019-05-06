@@ -11,11 +11,10 @@ class City extends Component{
 
 
     render() {
-        let self=this;
         return (
             <div>
                 <div>
-                    <span></span>
+                    <span>RRRRRRRRRRRRRRRRRR</span>
                 </div>
                 <div>
                 </div>
@@ -27,4 +26,4 @@ class City extends Component{
     }
 }
 
-export default Changer;
+export default City;
