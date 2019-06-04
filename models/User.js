@@ -12,6 +12,11 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
+    phone: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: {
         type: String,
         required: true
@@ -24,7 +29,7 @@ const UserSchema = new Schema({
         type: String,
         default: 'student'
     },
-    instrument:{
+    instruments:{
         type:Array
     }
 });
