@@ -10,6 +10,7 @@ import UsersComponent from "./components/UsersComponent";
 import FormComponent from "./components/FormComponent";
 import axios from "axios";
 import AddCourseComponent from "./components/AddCourseComponent";
+import LoginComponent from "./components/LoginComponent";
 
 
 class App extends Component {
@@ -37,6 +38,20 @@ class App extends Component {
             }
         });
 
+    };
+
+  login=(user , callback)=>{
+      console.log('USER DATA => ',user);
+      axios.post("/api/users/login", user)
+          .then(()=>callback())
+          .catch(error=> console.log('Error happened ! '+error));
+  };
+
+    addStudent = (student,callback) => {
+
+        axios.post("/api/student", student)
+            .then(()=>callback())
+            .catch(error=> console.log('Error happened ! '+error));
     };
 
     addUser = (user,callback) => {
@@ -103,8 +118,9 @@ class App extends Component {
                 </div>
                 <Route exact path="/" component={HomeComponent} />
                 <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
-                <Route  path="/signup"  render={() => <FormComponent handleAddUser={this.addUser}/>} />
+                <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
                 <Route  path="/add-course"  render={() => <AddCourseComponent/>} />
+                <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
             </BrowserRouter>
             </div>
             </div>

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 // Create Schema
 const UserSchema = new Schema({
     name: {
@@ -31,7 +32,13 @@ const UserSchema = new Schema({
     },
     instruments:{
         type:Array
-    }
+    },
+    students: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Student'
+        }
+    ]
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

@@ -27,8 +27,9 @@ class TopMenu extends Component {
                    <Navbar bg="dark" variant="dark">
                        <Navbar.Brand href="/">Home</Navbar.Brand>
                        <Nav className="mr-auto">
-                               <NavLink  exact to="/users" href="home">Users</NavLink><Sep/>
-                               <NavLink  exact to="/signup" href="home">Sign Up</NavLink><Sep/>
+                           <NavLink  exact to="/users" href="home">Users</NavLink><Sep/>
+                           <NavLink  exact to="/login" href="home">Log in</NavLink><Sep/>
+                           <NavLink  exact to="/signup" href="home">Sign Up</NavLink><Sep/>
                        </Nav>
                    </Navbar>
                    <br />

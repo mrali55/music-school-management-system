@@ -18,8 +18,16 @@ class UsersComponent extends Component {
     }
 
     async componentDidMount() {
-        let data=await this.props.getUsers().then((res)=>  res);
-        this.setState({users:data});
+        let data=await this.props.getUsers().then((res)=> {
+            if(res.user==="unauthorized"){
+                this.setState({users:'error'});
+            }
+            else{
+                this.setState({users:data});
+            }
+        });
+
+
     }
 
     handleDeleteUser= (data,i)=>{
@@ -31,17 +39,17 @@ class UsersComponent extends Component {
         let oldUsers=this.state.users;
         this.setState({users:oldUsers.slice(0,i).concat(oldUsers.slice(i+1,oldUsers.length))});
 
-    }
+    };
 
     render() {
-console.log(this.state.users)
+console.log('stateeee ',this.state.users);
         return (
             <div>
                 <div className={'center'}>
                 <span className={'sub-title'}> All The users in the database are shown below</span>
                 </div>
                 <Container className="masthead ">
-                    <Table striped bordered hover variant="dark">
+                   {this.state.users!=='error' && <Table striped bordered hover variant="dark">
                         <thead>
                         <tr>{}
                             <th>#</th>
@@ -55,7 +63,7 @@ console.log(this.state.users)
                         </thead>
                         <tbody>
 
-                        {this.state.users!=null && this.state.users && this.state.users.map((user,i)=>
+                        {this.state.users!=null && this.state.users.map && this.state.users.map((user,i)=>
                             <tr>
                                 <td>{i}</td>
                                 <td>{user.name}</td>
@@ -79,8 +87,15 @@ console.log(this.state.users)
                         </div>
                         }
 
+
+
                         </tbody>
-                    </Table>
+                    </Table>}
+                    {this.state.users==='error' &&
+                    <div className={"error"}>
+                        Error Occurred !
+                    </div>
+                    }
                 </Container>
             </div>
         )

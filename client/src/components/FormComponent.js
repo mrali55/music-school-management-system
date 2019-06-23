@@ -4,12 +4,14 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner'
+import AddStudentComponent from "./AddStudentComponent";
 
 class FormComponent extends Component{
     constructor(props){
         super(props);
         this.state={
-            status:'ready'
+            status:'ready',
+            showAddStudent:true
         };
         this.handleSubmit=this.handleSubmit.bind(this);
         this.afterSubmit=this.afterSubmit.bind(this);
@@ -128,6 +130,12 @@ class FormComponent extends Component{
                 {this.state.status === "done" &&
                 <div className={'intro-text'}> Registered Successfully </div>
                 }
+
+                {this.state.status !== "done" && this.state.showAddStudent && <div>
+                    <AddStudentComponent
+                        handleAddStudent={this.props.handleAddStudent}
+                    />
+                </div>}
             </div>
         );
     }

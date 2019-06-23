@@ -7,19 +7,19 @@ const StudentSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
     register_date: {
         type: Date,
         default: Date.now
-    }
+    },
+    instruments:{
+        type:Array
+    },
+    author: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 });
 
-module.exports = User = mongoose.model('user', StudentSchema);
+module.exports = Student = mongoose.model('student', StudentSchema);
