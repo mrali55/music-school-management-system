@@ -21,9 +21,11 @@ class UsersComponent extends Component {
         let data=await this.props.getUsers().then((res)=> {
             if(res.user==="unauthorized"){
                 this.setState({users:'error'});
+                console.log('unauthorized')
             }
             else{
                 this.setState({users:data});
+                console.log('data set,da')
             }
         });
 

@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner'
 import AddStudentComponent from "./AddStudentComponent";
+import Redirect from "react-router-dom/es/Redirect";
 
 class LoginComponent extends Component{
     constructor(props){
@@ -34,6 +35,9 @@ class LoginComponent extends Component{
     }
 
     render(){
+        if (this.state.status=='done') {
+            return <Redirect to="../" />;
+        }
         return(
             <div>
                 {this.state.status==="ready" &&
