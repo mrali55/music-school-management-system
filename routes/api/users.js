@@ -11,6 +11,7 @@ router.get('/',ensureAuthenticated, (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    console.log('in post request at /')
     const newUser=new User({
         name:req.body.name,
         email:req.body.email,
@@ -44,10 +45,12 @@ router.delete('/:id', (req, res) => {
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/users',
+        successRedirect: '/',
         failureRedirect: '/users/testing'
     })(req, res, next);
 });
+
+
 
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
