@@ -27,8 +27,7 @@ const UserSchema = new Schema({
         default: Date.now
     },
     role: {
-        type: String,
-        default: 'student'
+        type: String
     },
     instruments:{
         type:Array

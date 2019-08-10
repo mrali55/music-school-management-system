@@ -17,11 +17,14 @@ mongoose.connect(db)
     .catch((e)=>console.log('Oh No! '+e));
 
 
+
 app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
 }));
+
+
 
 
 //passport middleware

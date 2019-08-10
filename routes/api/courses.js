@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
         .then(items=> res.json(items))
 });
 
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
     const newCourse=new Course({
         name:req.body.name,
         instrument:req.body.instrument,

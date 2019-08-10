@@ -10,6 +10,18 @@ router.get('/',ensureAuthenticated, (req, res) => {
         .then(items=> res.json(items))
 });
 
+router.get('/teachers', (req, res) => {
+    User.find({"role":"teacher"}).sort({_id:-1})
+        .then(items=> res.json(items))
+});
+
+router.get('/check-login', (req, res) => {
+    User.findById(req.user)
+        .then(() => res.json(req.user))
+        .catch(err => res.status(404).json({ success: false }));
+    return req.user;
+});
+
 router.post('/', (req, res) => {
     console.log('in post request at /')
     const newUser=new User({
@@ -17,7 +29,8 @@ router.post('/', (req, res) => {
         email:req.body.email,
         phone:req.body.phone,
         password:req.body.password,
-        instruments:req.body.instruments
+        instruments:req.body.instruments,
+        role:req.body.role
     });
 
     //HASH USER PASS
@@ -43,12 +56,12 @@ router.delete('/:id', (req, res) => {
 
 
 
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/users/testing'
-    })(req, res, next);
-});
+
+router.post('/login',
+    passport.authenticate('local'),
+    function(req, res) {
+        res.redirect('/api/users/check-login');
+    });
 
 
 
