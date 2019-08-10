@@ -16,28 +16,25 @@ class AddCourseComponent extends Component{
         };
         this.handleSubmit=this.handleSubmit.bind(this);
         this.afterSubmit=this.afterSubmit.bind(this);
-        this.handleChange=this.handleChange.bind(this);
+        this.handleChangeEnd=this.handleChangeEnd.bind(this);
+        this.handleChangeStart=this.handleChangeStart.bind(this);
     }
 
     handleSubmit(event){
         this.setState({status:'loading'});
         event.preventDefault();
-        let form=document.querySelector('#sign-up');
-        let checkedItems=Array.prototype.filter.call(form.elements.checkbox,(el)=> {
-            if(el.checked){
-                return el.name
-            }
-            return false;
-        });
-        checkedItems=Array.prototype.map.call(checkedItems,(el)=> el && el.name);
+        let form=document.querySelector('#add-course');
         const data = {
             name:form.elements.name.value,
-            email:form.elements.email.value,
-            phone:form.elements.phone.value,
-            password:form.elements.password.value,
-            instruments: checkedItems
-        }
-        this.props.handleAddUser(data,this.afterSubmit);
+            level:form.elements.level.value,
+            room:form.elements.room.value,
+            startDate:this.state.startDate,
+            endDate:this.state.endDate,
+            instrument: form.elements.instrument.value
+        };
+        console.log('data: ',data);
+        this.props.addCourse(data,this.afterSubmit);
+
 
     }
 
@@ -45,9 +42,15 @@ class AddCourseComponent extends Component{
         this.setState({status:'done'});
     }
 
-    handleChange(date) {
+    handleChangeStart(date) {
         this.setState({
             startDate: date
+        });
+    }
+
+    handleChangeEnd(date) {
+        this.setState({
+            endDate: date
         });
     }
 
@@ -75,7 +78,7 @@ class AddCourseComponent extends Component{
                             Instrument
                         </Form.Label>
                         <Col sm={2}>
-                            <Form.Control as="select">
+                            <Form.Control  name="instrument" as="select">
                                 <option>Choose...</option>
                                 <option>Guitar</option>
                                 <option>Violin</option>
@@ -110,7 +113,7 @@ class AddCourseComponent extends Component{
                         <Col>
                             <DatePicker
                                 selected={this.state.startDate}
-                                onChange={this.handleChange}
+                                onChange={this.handleChangeStart}
                             />
                         </Col>
                     </Form.Group>
@@ -122,7 +125,7 @@ class AddCourseComponent extends Component{
                         <Col>
                             <DatePicker
                                 selected={this.state.endDate}
-                                onChange={this.handleChange}
+                                onChange={this.handleChangeEnd}
                             />
                         </Col>
                     </Form.Group>

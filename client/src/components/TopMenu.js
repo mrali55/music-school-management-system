@@ -28,8 +28,11 @@ class TopMenu extends Component {
                        <Navbar.Brand href="/">Home</Navbar.Brand>
                        <Nav className="mr-auto">
                            <NavLink  exact to="/users" href="home">Users</NavLink><Sep/>
-                           <NavLink  exact to="/login" href="home">Log in</NavLink><Sep/>
-                           <NavLink  exact to="/signup" href="home">Sign Up</NavLink><Sep/>
+                           {!this.props.currentUser && <NavLink  exact to="/login" href="home">Log in</NavLink> }
+                           {!this.props.currentUser && <Sep/>}
+                           {!this.props.currentUser && <NavLink  exact to="/signup" href="home">Sign Up</NavLink> }
+                           {this.props.currentUser && <NavLink  exact to="/profile" href="profile">welcome {this.props.currentUser && this.props.currentUser.name}</NavLink> }<Sep/>
+                           {this.props.currentUser && <div>Log Out</div>}
                        </Nav>
                    </Navbar>
                    <br />

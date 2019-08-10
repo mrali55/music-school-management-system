@@ -8,17 +8,17 @@ import Loader from "react-loader-spinner";
 import Button from "react-bootstrap/Button";
 
 
-class UsersComponent extends Component {
+class TeachersComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state={users:null};
-        this.handleDeleteUser=this.handleDeleteUser.bind(this);
-        this.deleteUserCallback=this.deleteUserCallback.bind(this);
+        this.handleDeleteTeacher=this.handleDeleteTeacher.bind(this);
+        this.deleteTeacherCallback=this.deleteTeacherCallback.bind(this);
     }
 
     async componentDidMount() {
-        let data=await this.props.getUsers().then((res)=> {
+        let data=await this.props.getTeachers().then((res)=> {
             if(res.user==="unauthorized"){
                 this.setState({users:'error'});
                 console.log('unauthorized')
@@ -32,26 +32,26 @@ class UsersComponent extends Component {
 
     }
 
-    handleDeleteUser= (data,i)=>{
+    handleDeleteTeacher= (data,i)=>{
         console.log('User COMP ',data);
-        this.props.deleteUser(data,this.deleteUserCallback,i);
+        this.props.deleteUTeacher(data,this.deleteTeacherCallback,i);
     };
 
-    deleteUserCallback=(i)=>{
+    deleteTeacherCallback=(i)=>{
         let oldUsers=this.state.users;
         this.setState({users:oldUsers.slice(0,i).concat(oldUsers.slice(i+1,oldUsers.length))});
 
     };
 
     render() {
-console.log('stateeee ',this.state.users);
+        console.log('stateeee ',this.state.users);
         return (
             <div>
                 <div className={'center'}>
-                <span className={'sub-title'}> All The users in the database are shown below</span>
+                    <span className={'sub-title'}> All The users in the database are shown below</span>
                 </div>
                 <Container className="masthead ">
-                   {this.state.users!=='error' && <Table striped bordered hover variant="dark">
+                    {this.state.users!=='error' && <Table striped bordered hover variant="dark">
                         <thead>
                         <tr>{}
                             <th>#</th>
@@ -107,4 +107,4 @@ console.log('stateeee ',this.state.users);
 
 
 
-export default UsersComponent;
+export default TeachersComponent;

@@ -1,0 +1,25 @@
+:local(.courseContainer) {
+    padding-left: 10vw;
+    display: inline-flex;
+    min-width: -webkit-fill-available;
+
+}
+
+:local(.courseContainer:hover) {
+    background-color: rgba(183,203,54,0.20);
+
+}
+
+
+:local(.lines) {
+    padding-left: 2vw;
+}
+
+:local(.line) {
+
+}
+
+:local(.img) {
+    width: 150px;
+    height: 150px;
+}

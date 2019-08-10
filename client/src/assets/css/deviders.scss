@@ -1,0 +1,104 @@
+
+// Base Divider class
+.divider {
+  display: flex;
+
+  &:before,
+  &:after {
+    content: "";
+    flex: 1;
+  }
+}
+
+// Base line
+.line {
+  align-items: center;
+  margin: 0em -1em;
+
+  &:before,
+  &:after {
+    height: 1px;
+    margin: 0 1em;
+  }
+}
+
+
+.one-line {
+  &:before,
+  &:after {
+    background: rgba(0,0,0,0.30);
+  }
+}
+
+.razor {
+  &:before,
+  &:after {
+    box-shadow: 0 0.5px 0 black; // Chrome
+    // border-bottom: 0.5px solid black; // Safari
+  }
+}
+
+.double-razor {
+  &:before,
+  &:after {
+    height: 3px;
+    box-shadow: // Chrome
+            0 -0.5px 0 black,
+            0 0.5px 0 black;
+    // border: solid black; // Safari
+    border-width: 0;
+  }
+}
+
+.glow {
+  &:before,
+  &:after {
+    height: 6px;
+    -webkit-filter: blur(2px);
+    border-radius: 10px;
+  }
+
+  &:before {
+    background: linear-gradient(to right, white, gray);
+  }
+
+  &:after {
+    background: linear-gradient(to left, white, gray);
+  }
+}
+
+// Gradients
+.gradient {
+  align-items: stretch;
+  margin: 1em 0;
+  height: 2em;
+  line-height: 2em;
+  color: white;
+  background: black;
+
+  &:before {
+    background: linear-gradient(to right, white, black);
+  }
+
+  &:after {
+    background: linear-gradient(to left, white, black);
+  }
+}
+
+// Ribbon thing
+.donotcross {
+  overflow: hidden;
+  align-items: center;
+  background: hsl(50, 100%, 50%);
+  color: black;
+  height: 0.5em;
+  line-height: 2em;
+
+  &:before,
+  &:after {
+    background: white;
+    padding: 50px 0;
+    height: 0;
+    transform: rotate(45deg);
+  }
+}

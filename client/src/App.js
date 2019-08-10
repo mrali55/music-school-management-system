@@ -11,12 +11,20 @@ import FormComponent from "./components/FormComponent";
 import axios from "axios";
 import AddCourseComponent from "./components/AddCourseComponent";
 import LoginComponent from "./components/LoginComponent";
+import CourseInfoComponent from "./components/CourseInfoComponent";
+import CoursesComponent from "./components/CoursesComponent";
+import TeachersComponent from "./components/TeachersComponent";
+import ProfileComponent from "./components/ProfileComponent";
+import FooterComponent from "./components/FooterComponent";
+import deviderStyles  from "../src/assets/css/deviders.scss"
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={color:'default' ,
+    this.state={
+        currentUser: null,
+        color:'default' ,
         active:"home",
         items:[{title:'Home' , location:"home"},{title:'Teacher' , location:"teacher"}, {title:'Students' , location:"users"}]
     };
@@ -24,9 +32,13 @@ class App extends Component {
     this.switchPage.bind(this);
     this.getUsers=this.getUsers.bind(this);
     this.deleteUser=this.deleteUser.bind(this);
+    this.getCourses=this.getCourses.bind(this);
+    this.getTeachers=this.getTeachers.bind(this);
+
   }
 
-    componentDidMount=function() {
+    componentDidMount() {
+        this.isLoggedIn();
       let sticky=false;
         window.addEventListener('scroll', function(){
             if(window.scrollY >80) {
@@ -37,13 +49,25 @@ class App extends Component {
                 document.querySelector('.top-menu-holder').classList.remove("shrink");
             }
         });
-
     };
 
+  isLoggedIn=()=>{
+      axios.get("/api/users/check-login")
+          .then((res)=>{
+              console.log('is logged in res:', res);
+              this.setState({currentUser:res.data});
+          })
+          .catch(error=> console.log('Error happened! | isloggedin '+error));
+  };
+
   login=(user , callback)=>{
+      let self=this;
       console.log('USER DATA => ',user);
       axios.post("/api/users/login", user)
-          .then(()=>callback())
+          .then((res)=>{
+              self.setState({currentUser:res.data});
+              return callback()
+          })
           .catch(error=> console.log('Error happened ! '+error));
   };
 
@@ -77,10 +101,34 @@ class App extends Component {
         return users;
     }
 
+    async getTeachers(){
+        let teachers=await this.getData('/api/users/teachers');
+        return teachers;
+    }
+
+    addTeacher = (user,callback) => {
+        user.role='teacher';
+        axios.post("/api/users", user)
+            .then(()=>callback())
+            .catch(error=> console.log('Error happened ! '+error));
+    };
+
     async getData(url){
         return await axios.get(url)
             .then((res)=> {
+                console.log("**USER**", res.user)
                 return res.data});
+    }
+
+    addCourse = (course,callback) => {
+        axios.post("/api/courses/add", course)
+            .then(()=>callback())
+            .catch(error=> console.log('Error happened ! '+error));
+    };
+
+    async getCourses(){
+        let courses=await this.getData('/api/courses');
+        return courses;
     }
 
 
@@ -104,24 +152,32 @@ class App extends Component {
         <div className="main-container">
 
             <div>
-                sdfsdf
             <div className={'panel container'}>
             <BrowserRouter>
                 <div className="top-menu-holder fixed-top">
                     <Container>
                         <Row>
                             <Col>
-                                <TopMenu  mystyle={this.state.color} context={'HELLO WORLD!'} color={'red'}/>
+                                <TopMenu  mystyle={this.state.color} context={'HELLO WORLD!'} color={'red'} checkLogin={this.isLoggedIn} currentUser={this.state.currentUser}/>
                             </Col>
                         </Row>
                     </Container>
                 </div>
-                <Route exact path="/" component={HomeComponent} />
+                <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
                 <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
+                <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
                 <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
-                <Route  path="/add-course"  render={() => <AddCourseComponent/>} />
+                <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
+                <Route  path="/add-course"  render={() => <AddCourseComponent addCourse={this.addCourse}/>} />
                 <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
+                <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
+                <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
+                <Route  path="/profile"  render={() => <ProfileComponent getCourses={this.getCourses} />} />
             </BrowserRouter>
+                <h2 style={{marginTop:'15vh'}} className="divider line donotcross" contentEditable/>
+                <Row>
+                    <FooterComponent/>
+                </Row>
             </div>
             </div>
         </div>

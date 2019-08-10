@@ -1,0 +1,38 @@
+:local(.header) {
+   text-align: center;
+
+
+}
+
+:local(.container) {
+     margin-bottom: 50vh;
+
+
+ }
+
+:local(.content) {
+    padding-left: 6vw;
+    padding-right: 6vw;
+
+}
+:local(.student) {
+    min-width: -webkit-fill-available;
+    height: 10vh;
+    margin-top: 5px;
+    background-color: rgba(0,0,0,0.25);
+    display: table;
+
+
+
+}
+:local(.student:hover) {
+    background-color: rgba(0,0,0,0.75);
+
+}
+:local(.name) {
+    display: table-cell;
+    vertical-align: middle;
+}
+:local(.studentsContainer) {
+    margin-top: 5vh;
+}

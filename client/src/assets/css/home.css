@@ -1,4 +1,4 @@
-.menu-item{
+:local(.menuItem){
     font-size:4vw;
     text-align: center;
     color: black;
@@ -13,6 +13,64 @@
 
 }
 
-.text-container{
+:local(.container) {
+    margin: 40px;
+    border: 5px dashed pink;
+}
+
+:local(.textContainer){
     text-decoration: none;
 }
+
+:local(.mastheadMain){
+    padding-top: 15vh;
+    height: 50vh;
+    background-image:url("../g1.jpg") ;
+    width: inherit;
+    margin-bottom: 5vh;
+}
+
+:local(.mastheadOffer){
+    padding-top: 15vh;
+    height: 50vh;
+    background-image:url("../Guitar-banner.jpg") ;
+    margin-bottom: 5vh;
+    width: -webkit-fill-available;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+:local(.infoText){
+    padding-left: 2vw;
+    padding-right: 2vw;
+    color: white;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 40px;
+    margin-bottom: 25px;
+    font-family: 'Droid Serif',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+
+:local(.iconImg) {
+    width: 250px;
+    height: 250px;
+
+}
+
+:local(.infoInline) {
+    display: inline-flex;
+    text-align: center;
+}
+
+:local(.infoItem) {
+     margin-left: 13vw;
+
+ }
+
+:local(.sepirator) {
+    margin-left: 13vw;
+
+}
+
