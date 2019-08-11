@@ -54,6 +54,8 @@ class App extends Component {
 
 
 
+
+
   isLoggedIn=()=>{
       axios.get("/api/users/check-login")
           .then((res)=>{
@@ -73,6 +75,15 @@ class App extends Component {
           })
           .catch(error=> console.log('Error happened ! '+error));
   };
+
+    getCurrentUser=()=>{
+        axios.get("/api/users/current-user")
+            .then((res)=>{
+                console.log('is logged in res:', res);
+                this.setState({currentUser:res.data});
+            })
+            .catch(error=> console.log('Error happened! | isloggedin '+error));
+    };
 
     addStudent = (student,callback) => {
         let self=this;
@@ -125,9 +136,7 @@ class App extends Component {
 
     async getData(url){
         return await axios.get(url)
-            .then((res)=> {
-                console.log("**USER**", res.user)
-                return res.data});
+            .then((res)=>res.data);
     }
 
     addCourse = (course,callback) => {
@@ -179,11 +188,11 @@ class App extends Component {
                 <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
                 <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
                 <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
-                <Route  path="/add-course"  render={() => <AddCourseComponent addCourse={this.addCourse}/>} />
+                <Route  path="/add-course"  render={() => <AddCourseComponent getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
                 <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
                 <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
                 <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
-                <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.getStudents} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.isLoggedIn} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
             </BrowserRouter>
                 <h2 style={{marginTop:'15vh'}} className="divider line donotcross" contentEditable/>
                 <Row>

@@ -11,6 +11,7 @@
  }
 
 :local(.content) {
+    margin-top: 10px;
     padding-left: 6vw;
     padding-right: 6vw;
 

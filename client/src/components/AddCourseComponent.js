@@ -12,13 +12,28 @@ class AddCourseComponent extends Component{
         this.state={
             status:'ready',
             startDate:new Date(),
-            endDate:new Date()
+            endDate:new Date(),
+            teachers:[]
         };
         this.handleSubmit=this.handleSubmit.bind(this);
         this.afterSubmit=this.afterSubmit.bind(this);
         this.handleChangeEnd=this.handleChangeEnd.bind(this);
         this.handleChangeStart=this.handleChangeStart.bind(this);
     }
+
+    async componentDidMount() {
+        let data=await this.props.getTeachers().then((res)=> {
+            if(res.user==="unauthorized"){
+                this.setState({status:'error'});
+                console.log('unauthorized')
+            }
+            else{
+                this.setState({teachers:res});
+                console.log('data set | data:', res);
+            }
+        });
+    }
+
 
     handleSubmit(event){
         this.setState({status:'loading'});
@@ -30,7 +45,8 @@ class AddCourseComponent extends Component{
             room:form.elements.room.value,
             startDate:this.state.startDate,
             endDate:this.state.endDate,
-            instrument: form.elements.instrument.value
+            instrument: form.elements.instrument.value,
+            teacher: form.elements.teacher.value
         };
         console.log('data: ',data);
         this.props.addCourse(data,this.afterSubmit);
@@ -129,7 +145,18 @@ class AddCourseComponent extends Component{
                             />
                         </Col>
                     </Form.Group>
+                    <Form.Group as={Row} controlId="formHorizontalTeacher">
+                        <Form.Label column sm={2}>
+                            Teacher
+                        </Form.Label>
+                        <Col sm={6}>
+                            <Form.Control  name="teacher" as="select">
+                                <option>Choose...</option>
+                                {this.state.teachers.map((teacher)=><option>{teacher.name}</option>)}
 
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
 
 
 

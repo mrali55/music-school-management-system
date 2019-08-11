@@ -131,11 +131,7 @@ class FormComponent extends Component{
                 <div className={'intro-text'}> Registered Successfully </div>
                 }
 
-                {this.state.status !== "done" && this.state.showAddStudent && <div>
-                    <AddStudentComponent
-                        handleAddStudent={this.props.handleAddStudent}
-                    />
-                </div>}
+
             </div>
         );
     }

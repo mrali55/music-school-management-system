@@ -27,12 +27,17 @@ class ProfileComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalIsOpen: false
+            modalIsOpen: false,
+            currentUser:{}
         };
 
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+    }
+
+     componentDidMount() {
+       this.props.getStudents();
     }
 
     openModal() {
@@ -53,11 +58,14 @@ class ProfileComponent extends Component {
     render() {
         let self = this;
         console.log('profile: ', this);
+        if(!this.props.currentUser){
+            return(<div>Loading...</div>)
+        }
         return (
             <div className={style.container}>
                 <div className={style.header}>
                     <img src={'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/10_avatar-512.png'}/>
-                    <h1>Name</h1>
+                    <h1>{this.props.currentUser.name}</h1>
                 </div>
                 <div className={style.content}>
                     <h4>Students</h4>
@@ -70,8 +78,12 @@ class ProfileComponent extends Component {
                     </div>
                 </div>
 
-                <div>
+                <div className={style.content}>
                     <Button onClick={this.openModal}> Add Student</Button>
+                </div>
+
+                <div className={style.content}>
+
                 </div>
 
                 <Modal

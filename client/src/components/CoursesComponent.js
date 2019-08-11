@@ -21,7 +21,7 @@ class CoursesComponent extends Component {
     render() {
         let self = this;
         return (
-            <div>
+            <div className={style.main}>
                 {this.state.courses.map((course)=>
                     <div>
                     <div className={style.courseContainer}>
@@ -32,6 +32,7 @@ class CoursesComponent extends Component {
                             <h2> { course.name}</h2>
                             <p>Level: { course.level}</p>
                             <p>instrument: { course.instrument}</p>
+                            <p>Teacher: { course.teacher}</p>
                         </div>
                     </div>
                         <h2 className="divider line one-line" contentEditable/>
