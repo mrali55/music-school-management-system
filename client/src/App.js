@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import TopMenu from './components/TopMenu';
 import './App.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {BrowserRouter , Route , withRouter } from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import HomeComponent from "./components/HomeComponent";
 import UsersComponent from "./components/UsersComponent";
 import FormComponent from "./components/FormComponent";
@@ -16,7 +16,6 @@ import CoursesComponent from "./components/CoursesComponent";
 import TeachersComponent from "./components/TeachersComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import FooterComponent from "./components/FooterComponent";
-import deviderStyles  from "../src/assets/css/deviders.scss"
 
 
 class App extends Component {
@@ -34,10 +33,12 @@ class App extends Component {
     this.deleteUser=this.deleteUser.bind(this);
     this.getCourses=this.getCourses.bind(this);
     this.getTeachers=this.getTeachers.bind(this);
+    this.getStudents=this.getStudents.bind(this);
 
   }
 
     componentDidMount() {
+      console.log('app - did mount')
         this.isLoggedIn();
       let sticky=false;
         window.addEventListener('scroll', function(){
@@ -50,6 +51,8 @@ class App extends Component {
             }
         });
     };
+
+
 
   isLoggedIn=()=>{
       axios.get("/api/users/check-login")
@@ -72,9 +75,11 @@ class App extends Component {
   };
 
     addStudent = (student,callback) => {
-
-        axios.post("/api/student", student)
-            .then(()=>callback())
+        let self=this;
+        axios.post("/api/users/students", student)
+            .then((res)=>{
+                setTimeout(self.isLoggedIn,500);
+                callback()})
             .catch(error=> console.log('Error happened ! '+error));
     };
 
@@ -99,6 +104,11 @@ class App extends Component {
     async getUsers(){
         let users=await this.getData('/api/users');
         return users;
+    }
+
+    async getStudents(){
+        return this.state.currentUser.students;
+        //return await this.getData('/api/students');
     }
 
     async getTeachers(){
@@ -147,6 +157,7 @@ class App extends Component {
   render() {
     let self=this;
     const triggerPage = this.triggerPage;
+    console.log('app rendered | state: ',this.state);
     return (
 
         <div className="main-container">
@@ -172,7 +183,7 @@ class App extends Component {
                 <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
                 <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
                 <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
-                <Route  path="/profile"  render={() => <ProfileComponent getCourses={this.getCourses} />} />
+                <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.getStudents} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
             </BrowserRouter>
                 <h2 style={{marginTop:'15vh'}} className="divider line donotcross" contentEditable/>
                 <Row>
