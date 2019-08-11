@@ -18,6 +18,16 @@ router.post('/', (req, res) => {
         .then(user=>res.json(user));
 });
 
+router.post('/:id', (req, res) => {
+    console.log('req==>: ', req.user);
+    const newStudent=new Student({
+        name:req.body.name,
+        instruments:req.body.instruments
+    });
+    newStudent.save()
+        .then(user=>res.json(user));
+});
+
 router.delete('/:id', (req, res) => {
     Student.findById(req.params.id)
         .then(user => user.remove().then(() => res.json({ success: true })))

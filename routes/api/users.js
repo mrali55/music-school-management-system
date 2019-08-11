@@ -3,6 +3,7 @@ const router = express.Router();
 const passport=require('passport');
 const { forwardAuthenticated ,ensureAuthenticated} = require('../../config/auth');
 const User = require('../../models/User');
+const Student = require('../../models/Student');
 const bcrypt = require('bcryptjs');
 
 router.get('/',ensureAuthenticated, (req, res) => {
@@ -45,6 +46,16 @@ router.post('/', (req, res) => {
     }));
 
 
+});
+
+router.post('/students', (req, res) => {
+    console.log('student params: ', req.body);
+    let query = {'_id':req.user._id};
+
+    User.update(query, { $push: { students:req.body  } }, {new:true}, function(err, doc){
+        if (err) return res.send(500, { error: err });
+        return res.send("succesfully saved");
+    });
 });
 
 router.delete('/:id', (req, res) => {

@@ -14,6 +14,9 @@ const StudentSchema = new Schema({
     instruments:{
         type:Array
     },
+    user:{
+        type:String
+    },
     author: [
         {
             type: mongoose.Schema.Types.ObjectId,

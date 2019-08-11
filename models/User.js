@@ -32,12 +32,9 @@ const UserSchema = new Schema({
     instruments:{
         type:Array
     },
-    students: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Student'
-        }
-    ]
+    students: {
+        type:Array
+    }
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
