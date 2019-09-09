@@ -70,7 +70,7 @@ class HomeComponent extends Component {
                 <h2 className="divider line glow" contentEditable>Special Offer</h2>
                 <Row>
                     <NavLink className={styles.mastheadOffer} to="/CourseInfo">
-
+                        <img src={require('../assets/Guitar-banner.jpg')} className={styles.imgOffer}/>
                     </NavLink>
                 </Row>
 

@@ -31,15 +31,16 @@
 }
 
 :local(.mastheadOffer){
-    padding-top: 15vh;
-    height: 50vh;
-    background-image:url("../Guitar-banner.jpg") ;
+
+    padding-top: 5vh;
+    max-width:100%;
+    height:auto;
     margin-bottom: 5vh;
-    width: -webkit-fill-available;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+}
+
+:local(.imgOffer){
+    max-width:100%;
+    height:auto;
 }
 
 :local(.infoText){

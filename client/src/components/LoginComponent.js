@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner'
 import AddStudentComponent from "./AddStudentComponent";
 import Redirect from "react-router-dom/es/Redirect";
+import loginStyle from '../assets/css/login.module.css';
 
 class LoginComponent extends Component{
     constructor(props){
@@ -38,8 +39,9 @@ class LoginComponent extends Component{
         if (this.state.status=='done') {
             return <Redirect to="../" />;
         }
+        console.log('style ', loginStyle.main_container);
         return(
-            <div>
+            <div className={loginStyle.main_container}>
                 {this.state.status==="ready" &&
                 <Form id="login" onSubmit={this.handleSubmit}>
 

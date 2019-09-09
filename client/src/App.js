@@ -183,16 +183,18 @@ class App extends Component {
                         </Row>
                     </Container>
                 </div>
-                <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
-                <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
-                <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
-                <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
-                <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
-                <Route  path="/add-course"  render={() => <AddCourseComponent getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
-                <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
-                <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
-                <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
-                <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.isLoggedIn} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                <div className="content-container">
+                    <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
+                    <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
+                    <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
+                    <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
+                    <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
+                    <Route  path="/add-course"  render={() => <AddCourseComponent getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
+                    <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
+                    <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
+                    <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
+                    <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.isLoggedIn} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                </div>
             </BrowserRouter>
                 <h2 style={{marginTop:'15vh'}} className="divider line donotcross" contentEditable/>
                 <Row>

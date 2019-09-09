@@ -23,8 +23,7 @@ class TopMenu extends Component {
         let self = this;
         return (
            <div>
-               <>
-                   <Navbar bg="dark" variant="dark">
+               <Navbar bg="dark" variant="dark">
                        <Navbar.Brand href="/">Home</Navbar.Brand>
                        <Nav className="mr-auto">
                            <NavLink  exact to="/users" href="home">Users</NavLink><Sep/>
@@ -36,7 +35,6 @@ class TopMenu extends Component {
                        </Nav>
                    </Navbar>
                    <br />
-               </>;
            </div>
         )
     }

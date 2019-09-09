@@ -32,9 +32,12 @@ code {
 }
 .main-container{
   background-image: url("/assets/violin.jpg");
-  background-repeat: no-repeat;
   background-position: center center;
   min-height: 100vh;
+}
+
+.content-container{
+ 
 }
 
 .top-menu-holder{
@@ -102,7 +105,6 @@ code {
   padding-right: 0%;
   padding-left: 0%;
   width: 78vw;
-  padding-top: 10%;
   background-color: rgba(35,35,35,0.96);
   color: white;
   font-family: Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
