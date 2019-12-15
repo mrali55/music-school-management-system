@@ -42,11 +42,11 @@ class App extends Component {
         this.isLoggedIn();
       let sticky=false;
         window.addEventListener('scroll', function(){
-            if(window.scrollY >80) {
+            if(document.querySelector('.top-menu-holder').className.indexOf("shrink")===-1 && window.scrollY >80 ){
                 document.querySelector('.top-menu-holder').className += " shrink ";
                 sticky=true;
             }
-            else if(sticky && document.querySelector('.top-menu-holder')){
+            if(window.scrollY <=80 && sticky && document.querySelector('.top-menu-holder')){
                 document.querySelector('.top-menu-holder').classList.remove("shrink");
             }
         });

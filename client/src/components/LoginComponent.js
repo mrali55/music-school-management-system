@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner'
 import AddStudentComponent from "./AddStudentComponent";
-import Redirect from "react-router-dom/es/Redirect";
+import { Redirect } from "react-router-dom";
 import loginStyle from '../assets/css/login.module.css';
 
 class LoginComponent extends Component{
