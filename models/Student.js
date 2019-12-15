@@ -15,7 +15,10 @@ const StudentSchema = new Schema({
         type:Array
     },
     user:{
-        type:String
+        type: Schema.ObjectId, ref: 'User'
+    },
+    courses:{
+        type:Array
     },
     author: [
         {

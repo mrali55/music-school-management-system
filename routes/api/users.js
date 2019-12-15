@@ -51,8 +51,13 @@ router.post('/', (req, res) => {
 router.post('/students', (req, res) => {
     console.log('student params: ', req.body);
     let query = {'_id':req.user._id};
+    const newStudent=new Student({
+        name:req.body.name,
+        instruments:req.body.instruments,
+        user:req.user._id
+    });
 
-    User.update(query, { $push: { students:req.body  } }, {new:true}, function(err, doc){
+    User.update(query, { $push: { students:newStudent  } }, {new:true}, function(err, doc){
         if (err) return res.send(500, { error: err });
         return res.send("succesfully saved");
     });
