@@ -5,6 +5,7 @@ const flash=require('connect-flash');
 const session=require('express-session');
 const app=express();
 const passport =require('passport');
+const path = require('path');
 
 
 console.log('i have no idea whats going on');
@@ -18,6 +19,8 @@ mongoose.connect(db)
     .then(()=>console.log('connected to Database!'))
     .catch((e)=>console.log('Oh No! '+e));
 
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.use(session({
