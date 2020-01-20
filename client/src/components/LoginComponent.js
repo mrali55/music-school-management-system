@@ -7,6 +7,7 @@ import Loader from 'react-loader-spinner'
 import AddStudentComponent from "./AddStudentComponent";
 import { Redirect } from "react-router-dom";
 import loginStyle from '../assets/css/login.module.css';
+import MessageComponent from "./subComponents/messageComponent";
 
 class LoginComponent extends Component{
     constructor(props){
@@ -31,18 +32,21 @@ class LoginComponent extends Component{
 
     }
 
-    afterSubmit(){
-        this.setState({status:'done'});
+    afterSubmit(status){
+        this.setState({status:status});
     }
 
     render(){
-        if (this.state.status=='done') {
-            return <Redirect to="../" />;
-        }
         console.log('style ', loginStyle.main_container);
         return(
             <div className={loginStyle.main_container}>
-                {this.state.status==="ready" &&
+                {this.state.status === "error" &&
+                <MessageComponent
+                    title={'Incorrect Information, Try Again!'}
+                />
+                }
+
+                {(this.state.status==="ready" || this.state.status==="error") &&
                 <Form id="login" onSubmit={this.handleSubmit}>
 
 
@@ -86,9 +90,10 @@ class LoginComponent extends Component{
                 </div>
                 }
 
-                {this.state.status === "done" &&
-                <div className={'intro-text'}> Registered Successfully </div>
-                }
+
+
+
+
 
             </div>
         );

@@ -6,6 +6,8 @@ const session=require('express-session');
 const app=express();
 const passport =require('passport');
 
+
+console.log('i have no idea whats going on');
 // passport config
 
 
@@ -34,4 +36,4 @@ app.use(passport.session());
 
 app.use('/',require('./routes/index'));
 require('./config/passport')(passport);
-app.listen(5000);
+app.listen(3000);

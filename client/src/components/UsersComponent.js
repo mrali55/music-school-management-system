@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Loader from "react-loader-spinner";
 import Button from "react-bootstrap/Button";
+import GoToLogin from "./subComponents/GoToLogin";
 
 
 class UsersComponent extends Component {
@@ -27,7 +28,7 @@ class UsersComponent extends Component {
                 this.setState({users:res});
                 console.log('data set | data:', res);
             }
-        });
+        }).catch((e)=>{this.setState({users:'error'})});
 
 
     }
@@ -95,7 +96,7 @@ console.log('stateeee ',this.state.users);
                     </Table>}
                     {this.state.users==='error' &&
                     <div className={"error"}>
-                        Error Occurred !
+                        <GoToLogin/>
                     </div>
                     }
                 </Container>

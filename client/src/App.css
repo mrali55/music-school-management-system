@@ -31,3 +31,10 @@
     transform: rotate(360deg);
   }
 }
+
+.content-container{
+  min-height: 500px;
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+}

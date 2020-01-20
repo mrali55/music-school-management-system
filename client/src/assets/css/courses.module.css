@@ -1,0 +1,38 @@
+.courseContainer {
+    padding-left: 50px;
+    padding-right: 50px;
+    display: inline-flex;
+    min-width: -webkit-fill-available;
+
+}
+
+.courseContainer:hover {
+    background-color: rgba(183,203,54,0.20);
+
+}
+
+
+.lines {
+    padding-left: 2vw;
+}
+
+.main {
+    padding-top: 10vh;
+}
+.link {
+    color: white;
+    background-color: #007bff;
+    padding: 20px;
+    font-size: x-large;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+}
+
+.button{
+    margin-left: auto;
+    margin-top: 60px;
+}
+

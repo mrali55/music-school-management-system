@@ -8,6 +8,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import HomeComponent from "./components/HomeComponent";
 import UsersComponent from "./components/UsersComponent";
 import FormComponent from "./components/FormComponent";
+import SignUpComponent from "./components/SignUpComponent";
 import axios from "axios";
 import AddCourseComponent from "./components/AddCourseComponent";
 import LoginComponent from "./components/LoginComponent";
@@ -71,9 +72,12 @@ class App extends Component {
       axios.post("/api/users/login", user)
           .then((res)=>{
               self.setState({currentUser:res.data});
-              return callback()
+              return callback('done')
           })
-          .catch(error=> console.log('Error happened ! '+error));
+          .catch(error=> {console.log('Error happened ! '+error);
+          callback('error');
+
+          });
   };
 
     getCurrentUser=()=>{
@@ -90,14 +94,20 @@ class App extends Component {
         axios.post("/api/users/students", student)
             .then((res)=>{
                 setTimeout(self.isLoggedIn,500);
-                callback()})
-            .catch(error=> console.log('Error happened ! '+error));
+                callback('done')})
+            .catch(error=> {
+                callback('error');
+                console.log('Error happened ! ' + error);
+            });
     };
 
     addUser = (user,callback) => {
         axios.post("/api/users", user)
-            .then(()=>callback())
-            .catch(error=> console.log('Error happened ! '+error));
+            .then(()=>callback('done'))
+            .catch(error=> {
+                callback('error');
+                console.log('Error happened ! ' + error);
+            });
     };
 
     deleteUser = (id,callback,i) => {
@@ -130,8 +140,11 @@ class App extends Component {
     addTeacher = (user,callback) => {
         user.role='teacher';
         axios.post("/api/users", user)
-            .then(()=>callback())
-            .catch(error=> console.log('Error happened ! '+error));
+            .then(()=>callback('done'))
+            .catch(error=> {
+                callback('error');
+                console.log('Error happened ! ' + error);
+            });
     };
 
     async getData(url){
@@ -187,7 +200,7 @@ class App extends Component {
                     <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
                     <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
                     <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
-                    <Route  path="/signup"  render={() => <FormComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
+                    <Route  path="/signup"  render={() => <SignUpComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
                     <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
                     <Route  path="/add-course"  render={() => <AddCourseComponent getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
                     <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />

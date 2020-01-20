@@ -42,7 +42,11 @@ router.post('/', (req, res) => {
         }
         newUser.password=hash;
             newUser.save()
-                .then(user=>res.json(user));
+                .then(user=>res.json(user))
+                .catch((e)=>{
+                    res.status(400).end();
+                    console.log('add user error : ',e)
+                });
     }));
 
 

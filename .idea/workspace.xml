@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a023cb60-cd66-41b4-8421-ded82dd13ab0" name="Default Changelist" comment="authentication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Student.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Student.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -35,10 +36,17 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.16.0" />
+    <property name="editorconfig.notification" value="null" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.17.0" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -47,20 +55,22 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/assets/css" />
+      <recent name="$PROJECT_DIR$/client/src/components/subComponents" />
       <recent name="C:\Users\mustafaa\WebstormProjects\music-school-management-system\client\src\assets\css" />
       <recent name="C:\Users\Mustafa Ali\WebstormProjects\musicschool\routes" />
       <recent name="C:\Users\Mustafa Ali\WebstormProjects\musicschool\client\src" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -115,6 +125,8 @@
       <workItem from="1570436278976" duration="6000" />
       <workItem from="1573395401400" duration="4652000" />
       <workItem from="1575665702351" duration="3573000" />
+      <workItem from="1578145031842" duration="3319000" />
+      <workItem from="1579270919227" duration="9573000" />
     </task>
     <task id="LOCAL-00001" summary="register new user, adding course from">
       <created>1559657316315</created>
@@ -183,5 +195,15 @@
     <MESSAGE value="register new user, adding course from" />
     <MESSAGE value="authentication" />
     <option name="LAST_COMMIT_MESSAGE" value="authentication" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="498" y="287" width="683" height="476" key="find.popup" timestamp="1579281997968">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="498" y="287" width="683" height="476" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1579281997968" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1579274745863">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1579274745863" />
   </component>
 </project>

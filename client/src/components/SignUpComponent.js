@@ -5,8 +5,10 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner'
 import AddStudentComponent from "./AddStudentComponent";
+import style from '../assets/css/signup.module.css'
+import MessageComponent from "./subComponents/messageComponent";
 
-class FormComponent extends Component{
+class SignUpComponent extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -39,13 +41,17 @@ class FormComponent extends Component{
 
     }
 
-    afterSubmit(){
-        this.setState({status:'done'});
+    afterSubmit(status){
+        this.setState({status:status});
     }
 
     render(){
         return(
             <div>
+                <div className={style.title}>
+                    <span>Sign Up</span>
+                    <div>Enter Your Details To Sign Up As A User</div>
+                </div>
                 {this.state.status==="ready" &&
                 <Form id="sign-up" onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -127,7 +133,17 @@ class FormComponent extends Component{
                 }
 
                 {this.state.status === "done" &&
-                <div className={'intro-text'}> Registered Successfully </div>
+                <MessageComponent
+                    title={'Registered Successfully'}
+                    home={true}
+                />
+                }
+
+                {this.state.status === "error" &&
+                <MessageComponent
+                    title={'Something Went Wrong, Try Again!'}
+                    home={true}
+                />
                 }
 
 
@@ -139,4 +155,4 @@ class FormComponent extends Component{
 
 
 
-export default FormComponent;
+export default SignUpComponent;

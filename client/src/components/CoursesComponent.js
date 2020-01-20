@@ -1,6 +1,9 @@
 import React , {Component} from 'react';
-import style from "../assets/css/courses.css"
+import style from "../assets/css/courses.module.css"
 import deviderStyles  from "../assets/css/deviders.scss"
+import Button from "react-bootstrap/Button";
+import {NavLink} from "react-router-dom";
+
 
 class CoursesComponent extends Component {
 
@@ -11,6 +14,10 @@ class CoursesComponent extends Component {
         }
 
     }
+
+    showCourse=()=>{
+
+    };
 
     async componentDidMount() {
         this.courses= await this.props.getCourses();
@@ -33,6 +40,9 @@ class CoursesComponent extends Component {
                             <p>Level: { course.level}</p>
                             <p>instrument: { course.instrument}</p>
                             <p>Teacher: { course.teacher}</p>
+                        </div>
+                        <div className={style.button}>
+                            <NavLink className={style.link} exact to="/courseInfo" href="home">Register</NavLink>
                         </div>
                     </div>
                         <h2 className="divider line one-line" contentEditable/>
