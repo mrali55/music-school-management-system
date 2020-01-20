@@ -36,4 +36,4 @@ app.use(passport.session());
 
 app.use('/',require('./routes/index'));
 require('./config/passport')(passport);
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

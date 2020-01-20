@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a023cb60-cd66-41b4-8421-ded82dd13ab0" name="Default Changelist" comment="authentication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,6 +124,7 @@
       <workItem from="1575665702351" duration="3573000" />
       <workItem from="1578145031842" duration="3319000" />
       <workItem from="1579270919227" duration="9573000" />
+      <workItem from="1579515076467" duration="1296000" />
     </task>
     <task id="LOCAL-00001" summary="register new user, adding course from">
       <created>1559657316315</created>
