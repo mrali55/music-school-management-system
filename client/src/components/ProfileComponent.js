@@ -37,7 +37,6 @@ class ProfileComponent extends Component {
     }
 
      componentDidMount() {
-       this.props.getStudents();
     }
 
     openModal() {

@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Loader from "react-loader-spinner";
 import Button from "react-bootstrap/Button";
+import {NavLink} from "react-router-dom";
+import styles from "../assets/css/home.css";
 
 
 class TeachersComponent extends Component {
@@ -17,8 +19,8 @@ class TeachersComponent extends Component {
         this.deleteTeacherCallback=this.deleteTeacherCallback.bind(this);
     }
 
-    async componentDidMount() {
-        let data=await this.props.getTeachers().then((res)=> {
+    componentDidMount() {
+        this.props.getTeachers().then((res)=> {
             if(res.user==="unauthorized"){
                 this.setState({users:'error'});
                 console.log('unauthorized')
@@ -48,8 +50,11 @@ class TeachersComponent extends Component {
         return (
             <div>
                 <div className={'center'}>
-                    <span className={'sub-title'}> All The users in the database are shown below</span>
+                    <span className={'sub-title'}> All The Teachers in the database are shown below</span>
+
+
                 </div>
+                <NavLink  to="/add-teacher">Add New Teacher</NavLink>
                 <Container className="masthead ">
                     {this.state.users!=='error' && <Table striped bordered hover variant="dark">
                         <thead>

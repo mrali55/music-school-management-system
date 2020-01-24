@@ -48,77 +48,80 @@ class SignUpComponent extends Component{
     render(){
         return(
             <div>
-                <div className={style.title}>
-                    <span>Sign Up</span>
-                    <div>Enter Your Details To Sign Up As A User</div>
-                </div>
+
                 {this.state.status==="ready" &&
-                <Form id="sign-up" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formHorizontalEmail">
-                        <Form.Label column sm={2}>
-                            Name
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control name="name" type="name" placeholder="Name" />
-                        </Col>
-                    </Form.Group>
+                    <div>
+                        <div className={style.title}>
+                            <span>Sign Up</span>
+                            <div>Enter Your Details To Sign Up As A User</div>
+                        </div>
+                        <Form id="sign-up" onSubmit={this.handleSubmit}>
+                            <Form.Group as={Row} controlId="formHorizontalEmail">
+                                <Form.Label column sm={2}>
+                                    Name
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control name="name" type="name" placeholder="Name" />
+                                </Col>
+                            </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalEmail">
-                        <Form.Label column sm={2}>
-                            Email
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control name="email" type="email" placeholder="Email" />
-                        </Col>
-                    </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalEmail">
+                                <Form.Label column sm={2}>
+                                    Email
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control name="email" type="email" placeholder="Email" />
+                                </Col>
+                            </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalPhone">
-                        <Form.Label column sm={2}>
-                            Phone
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control name="phone" type="phone" placeholder="Phone" />
-                        </Col>
-                    </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalPhone">
+                                <Form.Label column sm={2}>
+                                    Phone
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control name="phone" type="phone" placeholder="Phone" />
+                                </Col>
+                            </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalPassword">
-                        <Form.Label column sm={2}>
-                            Password
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control name="password" type="password" placeholder="Password" />
-                        </Col>
-                    </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalPassword">
+                                <Form.Label column sm={2}>
+                                    Password
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control name="password" type="password" placeholder="Password" />
+                                </Col>
+                            </Form.Group>
 
-                    <Form.Group as={Row} controlId="checkbox">
-                        <Form.Label column sm={2}>
-                            Instruments
-                        </Form.Label>
-                        <Col className={'bordered'}>
-                            <Form.Check inline  column sm={6} type="checkbox" name="Guitar" label="Guitar" />
-                            <img src={require('../assets/css/images/guitar.png')}/>
-                        </Col>
-                        <Col className={'bordered'}>
-                            <Form.Check inline column sm={6} type="checkbox" name="Oud" label="Oud" />
-                            <img src={require('../assets/css/images/banjo.png')}/>
-                        </Col>
-                        <Col className={'bordered'}>
-                            <Form.Check inline column sm={6} type="checkbox" name="Violin" label="Violin" />
-                            <img src={require('../assets/css/images/cello.png')}/>
-                        </Col>
-                        <Col className={'bordered'}>
-                            <Form.Check inline column sm={6} type="checkbox" name="Darbuka" label="Darbuka" />
-                            <img src={require('../assets/css/images/tabla.png')}/>
-                        </Col>
-                    </Form.Group>
+                            <Form.Group as={Row} controlId="checkbox">
+                                <Form.Label column sm={2}>
+                                    Instruments
+                                </Form.Label>
+                                <Col className={'bordered'}>
+                                    <Form.Check inline  column sm={6} type="checkbox" name="Guitar" label="Guitar" />
+                                    <img src={require('../assets/css/images/guitar.png')}/>
+                                </Col>
+                                <Col className={'bordered'}>
+                                    <Form.Check inline column sm={6} type="checkbox" name="Oud" label="Oud" />
+                                    <img src={require('../assets/css/images/banjo.png')}/>
+                                </Col>
+                                <Col className={'bordered'}>
+                                    <Form.Check inline column sm={6} type="checkbox" name="Violin" label="Violin" />
+                                    <img src={require('../assets/css/images/cello.png')}/>
+                                </Col>
+                                <Col className={'bordered'}>
+                                    <Form.Check inline column sm={6} type="checkbox" name="Darbuka" label="Darbuka" />
+                                    <img src={require('../assets/css/images/tabla.png')}/>
+                                </Col>
+                            </Form.Group>
 
 
-                    <Form.Group as={Row}>
-                        <Col sm={{ span: 10, offset: 2 }}>
-                            <Button id="btn_submit" type="submit">Sign Up</Button>
-                        </Col>
-                    </Form.Group>
-                </Form>
+                            <Form.Group as={Row}>
+                                <Col sm={{ span: 10, offset: 2 }}>
+                                    <Button id="btn_submit" type="submit">Sign Up</Button>
+                                </Col>
+                            </Form.Group>
+                        </Form>
+                    </div>
                 }
                 {this.state.status === "loading" &&
                 <div className={"intro-text"}>

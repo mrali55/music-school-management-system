@@ -17,6 +17,8 @@ import CoursesComponent from "./components/CoursesComponent";
 import TeachersComponent from "./components/TeachersComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import FooterComponent from "./components/FooterComponent";
+import EditCourse from "./components/EditCourse";
+import EnrollCourseComponent from "./components/EnrollCourseComponent";
 
 
 class App extends Component {
@@ -34,8 +36,9 @@ class App extends Component {
     this.deleteUser=this.deleteUser.bind(this);
     this.getCourses=this.getCourses.bind(this);
     this.getTeachers=this.getTeachers.bind(this);
-    this.getStudents=this.getStudents.bind(this);
-
+    this.getCurrentUserStudents=this.getCurrentUserStudents.bind(this);
+    this.setCurrentCourseInfo=this.setCurrentCourseInfo.bind(this);
+    this.getCourseById=this.getCourseById.bind(this);
   }
 
     componentDidMount() {
@@ -55,6 +58,15 @@ class App extends Component {
 
 
 
+  async setCurrentCourseInfo(course) {
+      console.log('setCurrentCourseInfo course: ',course);
+
+      let students = course.students ? await this.findUsers(course.students): [];
+      console.log('setCurrentCourseInfo students: ',students);
+
+      console.log('setCurrentCourseInfo final: ',{currentCourse: {...course,studentsData:students}});
+      this.setState({currentCourse: {...course,studentsData:students}});
+  }
 
 
   isLoggedIn=()=>{
@@ -127,7 +139,7 @@ class App extends Component {
         return users;
     }
 
-    async getStudents(){
+    async getCurrentUserStudents(){
         return this.state.currentUser.students;
         //return await this.getData('/api/students');
     }
@@ -158,10 +170,44 @@ class App extends Component {
             .catch(error=> console.log('Error happened ! '+error));
     };
 
+    editCourse = (course,callback) => {
+        console.log('editCourse: ', course);
+        axios.post("/api/courses/edit", course)
+            .then(()=>callback())
+            .catch(error=> console.log('Error happened ! '+error));
+    };
+
     async getCourses(){
         let courses=await this.getData('/api/courses');
         return courses;
     }
+
+    async getCourseById(id){
+        let course=await this.getData(`/api/courses/${id}`);
+        return course;
+    }
+
+
+    findUsers =async  (idList,callback) => {
+        console.log('sending req')
+        let response =await axios.post("/api/users/many", idList)
+            .then((response)=>response)
+            .catch(error=> {
+                callback && callback('error');
+                console.log('Error happened ! ' + error);
+            });
+        console.log('findUsers response: ', response);
+        return response.data;
+    };
+
+    enrollCourse=(courseId,studentsId)=>{
+        let data={courseId,studentsId};
+        axios.post("/api/courses/enroll", data)
+            .then((response)=>response)
+            .catch(error=> {
+                console.log('Error happened ! ' + error);
+            });
+    };
 
 
 
@@ -198,15 +244,18 @@ class App extends Component {
                 </div>
                 <div className="content-container">
                     <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
-                    <Route  path="/users"  render={() => <UsersComponent getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
-                    <Route  path="/teachers"  render={() => <TeachersComponent getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
-                    <Route  path="/signup"  render={() => <SignUpComponent handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
-                    <Route  path="/add-teacher"  render={() => <FormComponent handleAddUser={this.addTeacher}/>} />
-                    <Route  path="/add-course"  render={() => <AddCourseComponent getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
-                    <Route  path="/login"  render={() => <LoginComponent handleLogin={this.login}/>} />
-                    <Route  path="/CourseInfo"  render={() => <CourseInfoComponent/>} />
-                    <Route  path="/courses"  render={() => <CoursesComponent getCourses={this.getCourses} />} />
-                    <Route  path="/profile"  render={() => <ProfileComponent getStudents={this.isLoggedIn} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                    <Route  path="/users"  render={() => <UsersComponent currentUser={this.state.currentUser} getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
+                    <Route  path="/teachers"  render={() => <TeachersComponent currentUser={this.state.currentUser} getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
+                    <Route  path="/signup"  render={() => <SignUpComponent currentUser={this.state.currentUser} handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />
+                    <Route  path="/add-teacher"  render={() => <FormComponent currentUser={this.state.currentUser} handleAddUser={this.addTeacher}/>} />
+                    <Route  path="/add-course"  render={() => <AddCourseComponent currentUser={this.state.currentUser} getTeachers={this.getTeachers} addCourse={this.addCourse}/>} />
+                    <Route  path="/login"  render={() => <LoginComponent currentUser={this.state.currentUser} handleLogin={this.login}/>} />
+                    <Route  path="/CourseInfo"  render={() => <CourseInfoComponent enrollCourse={this.enrollCourse} getCourseById={this.getCourseById} editCourse={this.editCourse} getTeachers={this.getTeachers} currentUser={this.state.currentUser} findUsers={this.findUsers} currentCourse={this.state.currentCourse}/>} />
+                    <Route  path="/courses"  render={() => <CoursesComponent currentUser={this.state.currentUser} setCurrentCourseInfo={this.setCurrentCourseInfo} getCourses={this.getCourses} />} />
+                    <Route  path="/profile"  render={() => <ProfileComponent currentUser={this.state.currentUser} getCurrentUserStudents={this.getCurrentUserStudents} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                    <Route  path="/edit"  render={() => <EditCourse editCourse={this.editCourse} getTeachers={this.getTeachers} currentUser={this.state.currentUser}/>} />
+                    <Route  path="/enroll"  render={() => <EnrollCourseComponent currentUser={this.state.currentUser} />} />
+
                 </div>
             </BrowserRouter>
                 <h2 style={{marginTop:'15vh'}} className="divider line donotcross" contentEditable/>

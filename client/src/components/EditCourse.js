@@ -5,8 +5,11 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Loader from 'react-loader-spinner';
 import DatePicker, {CalendarContainer} from 'react-datepicker';
+import style from '../assets/css/editCourse.module.css';
 
-class AddCourseComponent extends Component{
+
+
+class EditCourse extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -19,6 +22,15 @@ class AddCourseComponent extends Component{
         this.afterSubmit=this.afterSubmit.bind(this);
         this.handleChangeEnd=this.handleChangeEnd.bind(this);
         this.handleChangeStart=this.handleChangeStart.bind(this);
+        this.fillForm=this.fillForm.bind(this);
+
+        this.course=this.props.course; //{"time":[],"students":["5d11b7fb5042863274bd7588"],"_id":"5d11bad9c80c0b38f413aac3","name":"guitar 1","instrument":"Guitar","level":"1","room":"2","__v":0};
+        console.log('this.props.course: ', this.props.course);
+        this.instrumentDefaultValue=this.course.instrument;
+        this.teacherDefaultValue=this.course.teacher;
+
+
+
     }
 
     async componentDidMount() {
@@ -32,26 +44,41 @@ class AddCourseComponent extends Component{
                 console.log('data set | data:', res);
             }
         });
+        this.fillForm(this.course);
+
     }
+
+    fillForm(course){
+        let form=document.querySelector('#edit-course');
+        form.elements.name.value=course.name;
+        form.elements.level.value=course.level;
+        form.elements.room.value=course.room;
+        //form.elements.startDate.value=course.startDate;
+        //form.elements.endDate.value=course.endDate;
+        form.elements.instrument=course.instrument;
+        form.elements.teacher=course.teacher;
+
+    }
+
 
 
     handleSubmit(event){
         this.setState({status:'loading'});
         event.preventDefault();
-        let form=document.querySelector('#add-course');
-        console.log('form data: ', form.elements);
+        let form=document.querySelector('#edit-course');
         const data = {
+            _id:this.course._id,
             name:form.elements.name.value,
             level:form.elements.level.value,
             room:form.elements.room.value,
             startDate:this.state.startDate,
             endDate:this.state.endDate,
-            instrument: form.elements.instrument.value,
-            teacher: form.elements.teacher.value,
-            note: form.elements.note.value
+            instrument: form.elements.instrument.value || this.instrumentDefaultValue,
+            note:form.elements.note.value
+            //teacher: form.elements.teacher.value || this.teacherDefaultValue
         };
         console.log('data: ',data);
-        this.props.addCourse(data,this.afterSubmit);
+        this.props.editCourse(data,this.afterSubmit);
 
 
     }
@@ -77,9 +104,9 @@ class AddCourseComponent extends Component{
     render(){
         console.log(this)
         return(
-            <div>
+            <div className={style.edit_container}>
                 {this.state.status==="ready" &&
-                <Form id="add-course" onSubmit={this.handleSubmit}>
+                <Form id="edit-course" onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formHorizontalName">
                         <Form.Label column sm={2}>
                             Name
@@ -96,7 +123,7 @@ class AddCourseComponent extends Component{
                             Instrument
                         </Form.Label>
                         <Col sm={2}>
-                            <Form.Control  name="instrument" as="select">
+                            <Form.Control  name="instrument" as="select" defaultValue={this.instrumentDefaultValue}>
                                 <option>Choose...</option>
                                 <option>Guitar</option>
                                 <option>Violin</option>
@@ -152,7 +179,7 @@ class AddCourseComponent extends Component{
                             Teacher
                         </Form.Label>
                         <Col sm={6}>
-                            <Form.Control  name="teacher" as="select">
+                            <Form.Control  name="teacher" as="select" defaultValue={this.teacherDefaultValue}>
                                 <option>Choose...</option>
                                 {this.state.teachers.map((teacher)=><option>{teacher.name}</option>)}
 
@@ -183,7 +210,7 @@ class AddCourseComponent extends Component{
 
                     <Form.Group as={Row}>
                         <Col sm={{ span: 10, offset: 2 }}>
-                            <Button id="btn_submit" type="submit">Sign Up</Button>
+                            <Button id="btn_submit" type="submit">Save</Button>
                         </Col>
                     </Form.Group>
                 </Form>
@@ -211,4 +238,4 @@ class AddCourseComponent extends Component{
 
 
 
-export default AddCourseComponent;
+export default EditCourse;

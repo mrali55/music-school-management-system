@@ -38,6 +38,9 @@ class LoginComponent extends Component{
 
     render(){
         console.log('style ', loginStyle.main_container);
+        if (this.state.status==='done' || this.props.currentUser) {
+            return <Redirect to='/'/>;
+        }
         return(
             <div className={loginStyle.main_container}>
                 {this.state.status === "error" &&

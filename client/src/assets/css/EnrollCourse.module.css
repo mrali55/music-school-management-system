@@ -1,0 +1,13 @@
+.main_container{
+    margin: 0 auto;
+    width: 90%;
+    background-color: #191919;
+
+}
+
+.students_list{
+    min-height: 400px;
+    margin: 0 auto;
+    padding: 20px;
+
+}

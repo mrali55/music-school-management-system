@@ -17,6 +17,7 @@
     "react-modal": "^3.8.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "reactstrap": "^8.4.0",
     "startbootstrap-agency": "^5.0.7"
   },
   "scripts": {
