@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a023cb60-cd66-41b4-8421-ded82dd13ab0" name="Default Changelist" comment="authentication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/courses.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/courses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +124,9 @@
       <workItem from="1575665702351" duration="3573000" />
       <workItem from="1578145031842" duration="3319000" />
       <workItem from="1579270919227" duration="9573000" />
-      <workItem from="1579515076467" duration="1920000" />
+      <workItem from="1579515076467" duration="10663000" />
+      <workItem from="1579624703672" duration="4036000" />
+      <workItem from="1579795100436" duration="18247000" />
     </task>
     <task id="LOCAL-00001" summary="register new user, adding course from">
       <created>1559657316315</created>
@@ -195,13 +197,20 @@
     <option name="LAST_COMMIT_MESSAGE" value="authentication" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="498" y="287" width="683" height="476" key="find.popup" timestamp="1579281997968">
+    <state x="2449" y="142" key="CommitChangelistDialog2" timestamp="1579795399732">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2449" y="142" key="CommitChangelistDialog2/0.0.1920.1080/1920.0.1920.1080/-1680.0.1680.1050@1920.0.1920.1080" timestamp="1579795399732" />
+    <state x="498" y="287" width="683" height="476" key="find.popup" timestamp="1579814477176">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="498" y="287" width="683" height="476" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1579281997968" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1579274745863">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="498" y="287" width="683" height="476" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1579814477176" />
+    <state x="569" y="295" width="781" height="490" key="find.popup/0.0.1920.1080/1920.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1579626811786" />
+    <state x="2489" y="295" width="781" height="490" key="find.popup/0.0.1920.1080/1920.0.1920.1080/-1680.0.1680.1050@1920.0.1920.1080" timestamp="1579796763627" />
+    <state x="577" y="240" width="766" height="696" key="search.everywhere.popup" timestamp="1579518561247">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1579274745863" />
+    <state x="577" y="240" width="766" height="696" key="search.everywhere.popup/0.0.1920.1080/1920.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1579518561247" />
   </component>
 </project>

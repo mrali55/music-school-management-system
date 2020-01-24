@@ -61,16 +61,26 @@ router.post('/students', (req, res) => {
         user:req.user._id
     });
 
-    User.update(query, { $push: { students:newStudent  } }, {new:true}, function(err, doc){
-        if (err) return res.send(500, { error: err });
-        return res.send("succesfully saved");
-    });
+    newStudent.save()
+        .then(()=>{
+            User.update(query, { $push: { students:newStudent  } }, {new:true}, function(err, doc){
+                if (err) return res.send(500, { error: err });
+                return res.send("succesfully saved");
+            });
+        });
+
 });
 
 router.delete('/:id', (req, res) => {
     User.findById(req.params.id)
         .then(user => user.remove().then(() => res.json({ success: true })))
         .catch(err => res.status(404).json({ success: false }));
+});
+
+router.post('/many', (req, res) => {
+    console.log('many | req: ',req.body);
+    Student.find({_id:{$in:req.body}})
+        .then(items=> res.json(items))
 });
 
 
