@@ -34,6 +34,9 @@ const UserSchema = new Schema({
     },
     students: {
         type:Array
+    },
+    courses: {
+        type:Array
     }
 });
 

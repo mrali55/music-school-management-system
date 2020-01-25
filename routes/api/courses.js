@@ -3,11 +3,12 @@ const router = express.Router();
 
 const Course = require('../../models/Course');
 const Student = require('../../models/Student');
+const User = require('../../models/User');
 
 
 router.get('/', (req, res) => {
     console.log('got request!');
-    Course.find()
+Course.find()
         .then(items=> res.json(items))
 });
 
@@ -22,20 +23,28 @@ router.get('/students/:id', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-    const newCourse=new Course({
-        name:req.body.name,
-        instrument:req.body.instrument,
-        level:req.body.level,
-        room:req.body.room,
-        start_date:req.body.start_date,
-        end_date:req.body.end_date,
-        time:req.body.time,
-        teacher:req.body.teacher,
-        students:req.body.students,
-        note:req.body.note
+    User.findById(req.body.teacher).then(teacher=>{
+        let newCourse=new Course({
+            name:req.body.name,
+            instrument:req.body.instrument,
+            level:req.body.level,
+            room:req.body.room,
+            start_date:req.body.start_date,
+            end_date:req.body.end_date,
+            time:req.body.time,
+            teacher:teacher,
+            students:req.body.students,
+            note:req.body.note
+        });
+        newCourse.save()
+            .then(()=>{
+                User.update(query, { $push: { courses:newCourse  } }, {new:true}, function(err, doc){
+                    if (err) return res.send(500, { error: err });
+                    res.json(newCourse);
+                });
+            });
     });
-    newCourse.save()
-        .then(course=>res.json(course));
+
 });
 
 router.post('/enroll', (req, res) => {

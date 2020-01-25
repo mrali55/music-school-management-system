@@ -29,7 +29,7 @@ const CourseSchema = new Schema({
         type:Array
     },
     teacher:{
-        type:String
+        type:Object
     },
     students:{
         type:Array
