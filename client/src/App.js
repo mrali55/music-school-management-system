@@ -243,7 +243,7 @@ class App extends Component {
                     </Container>
                 </div>
                 <div className="content-container">
-                    <Route exact path="/" render={() => <HomeComponent getTeachers={this.getTeachers}/>}  />
+                    <Route exact path="/" render={() => <HomeComponent currentUser={this.state.currentUser} getTeachers={this.getTeachers}/>}  />
                     <Route  path="/users"  render={() => <UsersComponent currentUser={this.state.currentUser} getUsers={this.getUsers} deleteUser={this.deleteUser}/>}  />
                     <Route  path="/teachers"  render={() => <TeachersComponent currentUser={this.state.currentUser} getTeachers={this.getTeachers} deleteTeacher={this.deleteUser}/>}  />
                     <Route  path="/signup"  render={() => <SignUpComponent currentUser={this.state.currentUser} handleAddStudent={this.addStudent} handleAddUser={this.addUser}/>} />

@@ -47,6 +47,8 @@ class TeachersComponent extends Component {
 
     render() {
         console.log('stateeee ',this.state.users);
+        let isAdmin=this.props.currentUser && this.props.currentUser.role==="admin";
+
         return (
             <div>
                 <div className={'center'}>
@@ -54,7 +56,7 @@ class TeachersComponent extends Component {
 
 
                 </div>
-                <NavLink  to="/add-teacher">Add New Teacher</NavLink>
+                {isAdmin &&  <NavLink  to="/add-teacher">Add New Teacher</NavLink>}
                 <Container className="masthead ">
                     {this.state.users!=='error' && <Table striped bordered hover variant="dark">
                         <thead>
@@ -65,7 +67,7 @@ class TeachersComponent extends Component {
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Instruments</th>
-                            <th>Delete</th>
+                            {isAdmin && <th>Delete</th>}
                         </tr>
                         </thead>
                         <tbody>
@@ -78,7 +80,7 @@ class TeachersComponent extends Component {
                                 <td>{user.phone}</td>
                                 <td>{user.role}</td>
                                 <td>{user.instruments.map((el=><span> {el} </span>))}</td>
-                                <td> <Button variant="danger" onClick={()=>(this.handleDeleteUser(user._id,i))}>Delete</Button></td>
+                                {isAdmin &&  <td> <Button variant="danger" onClick={()=>(this.handleDeleteUser(user._id,i))}>Delete</Button></td>}
                             </tr>
                         )}
 

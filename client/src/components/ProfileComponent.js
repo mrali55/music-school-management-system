@@ -66,38 +66,54 @@ class ProfileComponent extends Component {
                     <img src={'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/10_avatar-512.png'}/>
                     <h1>{this.props.currentUser.name}</h1>
                 </div>
-                <div className={style.content}>
-                    <h4>Students</h4>
-                    <div className={style.studentsContainer}>
-                    {this.props.currentUser.students.map((student)=>
-                        <div className={style.student}>
-                            <p className={style.name}>{student && student.name}</p>
+                {this.props.currentUser.role==="student" &&
+                    <div>
+                        <div className={style.content}>
+                            <h4>Students</h4>
+                            <div className={style.studentsContainer}>
+                                {this.props.currentUser.students.map((student)=>
+                                    <div className={style.student}>
+                                        <p className={style.name}>{student && student.name}</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    )}
+
+                        <div className={style.content}>
+                            <Button onClick={this.openModal}> Add Student</Button>
+                        </div>
+
+                        <div className={style.content}>
+
+                        </div>
+
+                        <Modal
+                            isOpen={this.state.modalIsOpen}
+                            onAfterOpen={this.afterOpenModal}
+                            onRequestClose={this.closeModal}
+                            style={customStyles}
+                            contentLabel="Example Modal"
+                        >
+
+                            <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                            <button onClick={this.closeModal}>close</button>
+                            <AddStudentComponent handleAddStudent={this.props.handleAddStudent}/>
+                        </Modal>
+                    </div>
+                }
+                {this.props.currentUser.role === "teacher" &&
+                <div className={style.content}>
+                    <h4>Courses</h4>
+                    <div className={style.studentsContainer}>
+                        {this.props.currentUser.courses.map((course)=>
+                            <div className={style.student}>
+                                <p className={style.name}>{course && course.name}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
-
-                <div className={style.content}>
-                    <Button onClick={this.openModal}> Add Student</Button>
-                </div>
-
-                <div className={style.content}>
-
-                </div>
-
-                <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
-                   <AddStudentComponent handleAddStudent={this.props.handleAddStudent}/>
-                </Modal>
-            </div>
+                }
+                    </div>
         )
     }
 

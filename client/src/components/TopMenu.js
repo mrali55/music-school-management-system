@@ -28,15 +28,12 @@ class TopMenu extends Component {
                        <Nav className="mr-auto">
                            {this.props.currentUser && (this.props.currentUser.role==="admin" || this.props.currentUser.role==="admin") && <NavLink  exact to="/users" href="home">Users</NavLink>}
                            {!this.props.currentUser && <Sep/>}
-                           <NavLink  exact to="/edit" href="home">edit</NavLink> <Sep/>
-                           <NavLink  exact to="/enroll" href="home">enroll</NavLink> <Sep/>
-
+                           {this.props.currentUser && <NavLink  exact to="/profile" href="profile">welcome {this.props.currentUser && this.props.currentUser.name}</NavLink> }<Sep/>
                            <NavLink  exact to="/courses" href="home">Courses</NavLink> <Sep/>
                            <NavLink  exact to="/teachers" href="home">Teachers</NavLink> <Sep/>
                            {!this.props.currentUser && <NavLink  exact to="/login" href="home">Log in</NavLink> }
                            {!this.props.currentUser && <Sep/>}
                            {!this.props.currentUser && <NavLink  exact to="/signup" href="home">Sign Up</NavLink> }
-                           {this.props.currentUser && <NavLink  exact to="/profile" href="profile">welcome {this.props.currentUser && this.props.currentUser.name}</NavLink> }<Sep/>
                            {this.props.currentUser && <div>Log Out</div>}
                        </Nav>
                    </Navbar>

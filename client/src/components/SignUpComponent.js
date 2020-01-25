@@ -35,7 +35,8 @@ class SignUpComponent extends Component{
             email:form.elements.email.value,
             phone:form.elements.phone.value,
             password:form.elements.password.value,
-            instruments: checkedItems
+            instruments: checkedItems,
+            role:"student"
         };
         this.props.handleAddUser(data,this.afterSubmit);
 

@@ -20,7 +20,9 @@ class EnrollCourseComponent extends Component{
     handleSubmit=(event)=>{
         event.preventDefault();
         let form=document.querySelector('#enroll');
-        let checkedItems=Array.prototype.filter.call(form.elements.checkbox,(el)=> {
+        console.log('Students to enroll | handleSubmit ',studentsToEnroll);
+
+        let checkedItems=Array.prototype.filter.call(form.elements.checkbox.length ? form.elements.checkbox : [form.elements.checkbox],(el)=> {
             if(el.checked){
                 return el.name
             }

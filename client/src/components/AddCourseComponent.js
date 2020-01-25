@@ -154,7 +154,7 @@ class AddCourseComponent extends Component{
                         <Col sm={6}>
                             <Form.Control  name="teacher" as="select">
                                 <option>Choose...</option>
-                                {this.state.teachers.map((teacher)=><option>{teacher.name}</option>)}
+                                {this.state.teachers.map((teacher)=><option value={teacher._id}>{teacher.name}</option>)}
 
                             </Form.Control>
                         </Col>

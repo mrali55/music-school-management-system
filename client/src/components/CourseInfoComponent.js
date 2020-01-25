@@ -106,7 +106,7 @@ class CourseInfoComponent extends Component {
                                 <td>2500</td>
                                 <td>20.09.2019</td>
                                 <td>20.10.2019</td>
-                                <td>{course.teacher}</td>
+                                <td>{course.teacher.name}</td>
                                 <td>
                                     <span>Total of {course.students && course.students.length}</span>
                                     {isAdmin && <ToggleComponent studentsData={course.studentsData || [1,2]}/>}

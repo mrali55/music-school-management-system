@@ -25,7 +25,8 @@ class HomeComponent extends Component {
 
 
     render() {
-        console.log('styles : ', styles.menuItem)
+        console.log('styles : ', styles.menuItem);
+        let isAdmin=this.props.currentUser && this.props.currentUser.role==="admin";
         return (
             <Container>
                 <Row>
@@ -43,26 +44,39 @@ class HomeComponent extends Component {
                 <Row>
                     <Container>
                         <Row>
-                            <NavLink className={styles.menuItem} exact to="/">
-                                 <Col > Home </Col>
-                            </NavLink>
 
-                            <NavLink className={styles.menuItem}  to="/users">
-                                <Col >Users</Col>
+                            {!this.props.currentUser &&
+                            <NavLink className={styles.menuItem} to="/signup">
+                                <Col>Sign Up </Col>
                             </NavLink>
-
-                            <NavLink className={styles.menuItem }  to="/signup">
-                                <Col >Sign Up </Col>
+                            }
+                            {this.props.currentUser &&
+                            <NavLink className={styles.menuItem} to="/profile">
+                                <Col>Profile </Col>
                             </NavLink>
-                            <NavLink className={styles.menuItem}  to="/add-course">
-                                <Col >Add Course </Col>
-                            </NavLink>
-                            <NavLink className={styles.menuItem}  to="/add-teacher">
-                            <Col >Add Teacher </Col>
-                        </NavLink>
+                            }
                             <NavLink className={styles.menuItem}  to="/teachers">
                                 <Col >Teachers </Col>
                             </NavLink>
+                            <NavLink className={styles.menuItem}  to="/courses">
+                                <Col >Courses </Col>
+                            </NavLink>
+                            {isAdmin &&
+                            <NavLink className={styles.menuItem} to="/users">
+                                <Col>Users</Col>
+                            </NavLink>
+                            }
+                            {isAdmin &&
+                            <NavLink className={styles.menuItem} to="/add-course">
+                                <Col>Add Course </Col>
+                            </NavLink>
+                            }
+                            {isAdmin &&
+                            <NavLink className={styles.menuItem} to="/add-teacher">
+                                <Col>Add Teacher </Col>
+                            </NavLink>
+                            }
+
                         </Row>
                     </Container>
                 </Row>
