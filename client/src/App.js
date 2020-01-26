@@ -46,7 +46,7 @@ class App extends Component {
         this.isLoggedIn();
       let sticky=false;
         window.addEventListener('scroll', function(){
-            if(document.querySelector('.top-menu-holder').className.indexOf("shrink")===-1 && window.scrollY >80 ){
+            if(document.querySelector('.top-menu-holder') && document.querySelector('.top-menu-holder').className.indexOf("shrink")===-1 && window.scrollY >80 ){
                 document.querySelector('.top-menu-holder').className += " shrink ";
                 sticky=true;
             }
@@ -91,6 +91,14 @@ class App extends Component {
 
           });
   };
+
+    logout=()=>{
+        axios.get("/api/users/logout")
+            .then((res)=>{
+                this.setState({currentUser:null});
+            })
+            .catch(error=> console.log('Error happened! | isloggedin '+error));
+    };
 
     getCurrentUser=()=>{
         axios.get("/api/users/current-user")
@@ -162,6 +170,11 @@ class App extends Component {
     async getData(url){
         return await axios.get(url)
             .then((res)=>res.data);
+    }
+
+    postMessage(courseId,message){
+
+        axios.post("/api/courses/message", {courseId,message});
     }
 
     addCourse = (course,callback) => {
@@ -237,7 +250,7 @@ class App extends Component {
                     <Container>
                         <Row>
                             <Col>
-                                <TopMenu  mystyle={this.state.color} context={'HELLO WORLD!'} color={'red'} checkLogin={this.isLoggedIn} currentUser={this.state.currentUser}/>
+                                <TopMenu  mystyle={this.state.color} context={'HELLO WORLD!'} color={'red'} logout={this.logout} checkLogin={this.isLoggedIn} currentUser={this.state.currentUser}/>
                             </Col>
                         </Row>
                     </Container>
@@ -252,7 +265,7 @@ class App extends Component {
                     <Route  path="/login"  render={() => <LoginComponent currentUser={this.state.currentUser} handleLogin={this.login}/>} />
                     <Route  path="/CourseInfo"  render={() => <CourseInfoComponent enrollCourse={this.enrollCourse} getCourseById={this.getCourseById} editCourse={this.editCourse} getTeachers={this.getTeachers} currentUser={this.state.currentUser} findUsers={this.findUsers} currentCourse={this.state.currentCourse}/>} />
                     <Route  path="/courses"  render={() => <CoursesComponent currentUser={this.state.currentUser} setCurrentCourseInfo={this.setCurrentCourseInfo} getCourses={this.getCourses} />} />
-                    <Route  path="/profile"  render={() => <ProfileComponent currentUser={this.state.currentUser} getCurrentUserStudents={this.getCurrentUserStudents} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
+                    <Route  path="/profile"  render={() => <ProfileComponent postMessage={this.postMessage} currentUser={this.state.currentUser} getCurrentUserStudents={this.getCurrentUserStudents} handleAddStudent={this.addStudent} currentUser={this.state.currentUser}/>} />
                     <Route  path="/edit"  render={() => <EditCourse editCourse={this.editCourse} getTeachers={this.getTeachers} currentUser={this.state.currentUser}/>} />
                     <Route  path="/enroll"  render={() => <EnrollCourseComponent currentUser={this.state.currentUser} />} />
 

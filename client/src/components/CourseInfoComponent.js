@@ -106,7 +106,7 @@ class CourseInfoComponent extends Component {
                                 <td>2500</td>
                                 <td>20.09.2019</td>
                                 <td>20.10.2019</td>
-                                <td>{course.teacher.name}</td>
+                                <td>{course.teacher && course.teacher.name}</td>
                                 <td>
                                     <span>Total of {course.students && course.students.length}</span>
                                     {isAdmin && <ToggleComponent studentsData={course.studentsData || [1,2]}/>}
@@ -114,7 +114,7 @@ class CourseInfoComponent extends Component {
                                 <td>{course.note}</td>
                                 {isAdmin && <td><Button onClick={()=>this.openModal('edit')}>Edit</Button></td>}
                                 {isAdmin && <td><Button variant="danger">Delete</Button></td>}
-                                {!isAdmin && <td><Button variant="success" onClick={()=>this.openModal('enroll')}>Enroll</Button></td>}
+                                {this.props.currentUser && <td><Button variant="success" onClick={()=>this.openModal('enroll')}>Enroll</Button></td>}
 
                             </tr>
                             </tbody>
@@ -143,7 +143,7 @@ class CourseInfoComponent extends Component {
                             editCourse={this.props.editCourse}
                             getTeachers={this.props.getTeachers}
                         />}
-                        {this.state.mode==='enroll' && <EnrollCourseComponent enrollCourse={this.props.enrollCourse} currentCourse={course} currentUser={this.props.currentUser}/>}
+                        {this.props.currentUser && this.state.mode==='enroll' && <EnrollCourseComponent enrollCourse={this.props.enrollCourse} currentCourse={course} currentUser={this.props.currentUser}/>}
                     </Modal>
                 </Container>
             </div>

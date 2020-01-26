@@ -15,6 +15,10 @@ class TopMenu extends Component {
 
     }
 
+    handleLogout=()=>{
+        this.props.logout();
+    };
+
 
 
     render() {
@@ -34,7 +38,7 @@ class TopMenu extends Component {
                            {!this.props.currentUser && <NavLink  exact to="/login" href="home">Log in</NavLink> }
                            {!this.props.currentUser && <Sep/>}
                            {!this.props.currentUser && <NavLink  exact to="/signup" href="home">Sign Up</NavLink> }
-                           {this.props.currentUser && <div>Log Out</div>}
+                           {this.props.currentUser && <a onClick={this.handleLogout}>Log Out</a>}
                        </Nav>
                    </Navbar>
                    <br />

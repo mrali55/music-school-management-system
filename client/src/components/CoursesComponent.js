@@ -46,7 +46,7 @@ class CoursesComponent extends Component {
                             <h2> { course.name}</h2>
                             <p>Level: { course.level}</p>
                             <p>instrument: { course.instrument}</p>
-                            <p>Teacher: { course.teacher.name}</p>
+                            <p>Teacher: { course.teacher && course.teacher.name}</p>
                         </div>
                         <div onClick={()=>this.handleCourseInfo(course)} className={style.button}>
                             <NavLink className={style.link} exact to="/courseInfo" href="home">Details</NavLink>
