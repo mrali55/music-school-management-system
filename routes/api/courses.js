@@ -5,6 +5,21 @@ const Course = require('../../models/Course');
 const Student = require('../../models/Student');
 const User = require('../../models/User');
 
+router.get('/test', (req, res) => {
+    console.log('got request!');
+    Course.aggregate([
+        { "$addFields": { "userId": { "$toString": "$_id" }}},
+        {
+            $lookup:
+                {
+                    from: "student",
+                    localField: "students",
+                    foreignField: "userId",
+                    as: "studentsData"
+                }
+        }
+    ]).then(items=> res.json(items))
+});
 
 router.get('/', (req, res) => {
     console.log('got request!');
@@ -23,6 +38,8 @@ router.get('/students/:id', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
+    let query = {'_id': req.body.teacher};
+
     User.findById(req.body.teacher).then(teacher=>{
         let newCourse=new Course({
             name:req.body.name,
@@ -40,7 +57,8 @@ router.post('/add', (req, res) => {
             .then(()=>{
                 User.update(query, { $push: { courses:newCourse  } }, {new:true}, function(err, doc){
                     if (err) return res.send(500, { error: err });
-                    res.json(newCourse);
+                    return res.send('Succesfully saved.');
+
                 });
             });
     });
@@ -79,7 +97,7 @@ router.post('/edit', (req, res) => {
         note:req.body.note
     };
     console.log('newData: ', newData);
-    let query = {'_id': req.body};
+    let query = {'_id': req.body._id};
     console.log('query: ', query);
     //req.newData.username = req.user.username;
 
@@ -87,6 +105,23 @@ router.post('/edit', (req, res) => {
         if (err) return res.send(500, {error: err});
         return res.send('Succesfully saved.');
     });
+});
+
+router.post('/message', (req, res) => {
+
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let newData={
+        name:req.body.message,
+        date:today
+    };
+    console.log('newData: ', newData);
+    let query = {'_id': req.body.courseId};
+    console.log('query: ', query);
+    //req.newData.username = req.user.username;
+
+    Course.findOneAndUpdate(query, { $push: { messages:newData  } }, {upsert: true}).then(res=>console.log('message : res: ',res))
 });
 
 router.delete('/:id', (req, res) => {

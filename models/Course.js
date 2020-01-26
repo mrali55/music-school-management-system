@@ -36,6 +36,9 @@ const CourseSchema = new Schema({
     },
     note:{
         type:String
+    },
+    messages:{
+        type:Array
     }
 });
 

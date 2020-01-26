@@ -11,6 +11,11 @@ router.get('/',ensureAuthenticated, (req, res) => {
         .then(items=> res.json(items))
 });
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.json({status:'success'});
+});
+
 router.get('/teachers', (req, res) => {
     User.find({"role":"teacher"}).sort({_id:-1})
         .then(items=> res.json(items))
