@@ -36,7 +36,7 @@ class TeachersComponent extends Component {
 
     handleDeleteTeacher= (data,i)=>{
         console.log('User COMP ',data);
-        this.props.deleteUTeacher(data,this.deleteTeacherCallback,i);
+        this.props.deleteTeacher(data,this.deleteTeacherCallback,i);
     };
 
     deleteTeacherCallback=(i)=>{
@@ -80,7 +80,7 @@ class TeachersComponent extends Component {
                                 <td>{user.phone}</td>
                                 <td>{user.role}</td>
                                 <td>{user.instruments.map((el=><span> {el} </span>))}</td>
-                                {isAdmin &&  <td> <Button variant="danger" onClick={()=>(this.handleDeleteUser(user._id,i))}>Delete</Button></td>}
+                                {isAdmin &&  <td> <Button variant="danger" onClick={()=>(this.handleDeleteTeacher(user._id,i))}>Delete</Button></td>}
                             </tr>
                         )}
 

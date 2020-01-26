@@ -134,7 +134,7 @@ class App extends Component {
         axios
             .delete(`/api/users/${id}`)
             .then(res =>
-                callback(i)
+                callback && callback(i)
             )
             .catch(error=> console.log('Error happened ! '+error));
     };

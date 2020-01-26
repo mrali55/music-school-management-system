@@ -114,7 +114,7 @@ class CourseInfoComponent extends Component {
                                 <td>{course.note}</td>
                                 {isAdmin && <td><Button onClick={()=>this.openModal('edit')}>Edit</Button></td>}
                                 {isAdmin && <td><Button variant="danger">Delete</Button></td>}
-                                {this.props.currentUser && <td><Button variant="success" onClick={()=>this.openModal('enroll')}>Enroll</Button></td>}
+                                {this.props.currentUser && !isAdmin && <td><Button variant="success" onClick={()=>this.openModal('enroll')}>Enroll</Button></td>}
 
                             </tr>
                             </tbody>
